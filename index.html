@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f7f7f7;
+  margin: 0;
+  padding: 0;
+  background: url('/Users/monicakumari/Desktop/WEB DEV/image/pawel-czerwinski-T5VUBvCYqKk-unsplash copy.jpg') no-repeat center center fixed;
+  background-size: 100% 100%;
+}
+
+header {
+  width: 100%;
+  height: 250px; /* Adjust the height as needed */
+  background: linear-gradient(to bottom, rgba(255,255,255,0.4), rgba(255,255,255,0.1)), url('/Users/monicakumari/Desktop/WEB DEV/image/280299073_2023-12-14_04-25-53.jpg') no-repeat center center;
+  background-size: cover;
+  position: relative;
+  transition: background-size 2s ease-in-out;
+}
+
+header:hover {
+  background-size: cover;
+}
+
+.container {
+  max-width: 600px;
+  margin: 50px auto;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+h3 {
+  text-align: center;
+  color: #333333;
+  margin-bottom: 20px;
+}
+
+label {
+  font-size: 14px;
+  color: #333333;
+  display: block;
+  margin-bottom: 8px;
+}
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px 40px 12px 20px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 14px;
+  background-image: url('https://drive.google.com/uc?export=view&id=YOUR_ICON_IMAGE_ID');
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input[type=text]:hover, select:hover {
+  border-color: #4CAF50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+input[type=submit], input[type=button] {
+  width: 48%;
+  background-color: #0f0249;
+  color: white;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+input[type=button] {
+  background-color: #070235;
+}
+
+input[type=submit]:hover, input[type=button]:hover {
+  transform: scale(1.05);
+}
+
+input[type=button]:hover {
+  background-color: #09042d;
+}
+
+button-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+div {
+  background-color: rgba(242, 242, 242, 0.9);
+  padding: 20px;
+  border-radius: 8px;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: #4CAF50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+.logo {
+  display: block;
+  margin: 0 auto 20px;
+  width: 100px;
+  transition: transform 0.3s;
+}
+
+.logo:hover {
+  transform: scale(1.1);
+}
+</style>
+</head>
+<body>
+<header></header>
+
+<div class="container">
+  <img src="/Users/monicakumari/Desktop/WEB DEV/image/download.jpeg" alt="Logo" class="logo">
+  <h3>Registration Form for CAPS</h3>
+
+  <div>
+    <form method="post" name="google-sheet">
+      <label for="NAME">Name</label>
+      <input type="text" id="NAME" name="NAME" placeholder="Your name..">
+
+      <label for="COURSE">Course</label>
+      <input type="text" id="COURSE" name="COURSE" placeholder="Your course..">
+
+      <label for="EMAIL">Email</label>
+      <input type="text" id="EMAIL" name="EMAIL" placeholder="Your mail id..">
+
+      <label for="WING">Wing</label>
+      <select id="WING" name="WING">
+        <option value="connect wide">Connect Wide</option>
+        <option value="OOPT">OOPT</option>
+        <option value="Operations">Operations</option>
+        <option value="Psychometric">Psychometric</option>
+        <option value="media pr">Media PR</option>
+        <option value="GPT">GPT</option>
+        <option value="Research">Research</option>
+        <option value="CGQC">CGQC</option>
+      </select>
+
+      <div class="button-group">
+        <input type="submit" value="Submit">
+        <input type="button" value="Clear" onclick="clearForm()">
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+const scriptURL = 'https://script.google.com/macros/s/AKfycbxX6u4jCtTnbcQAc8R1VgVQiZH5KWdKoNMJe39CuXMkVGHgdmizR0f3LF0WTgcdgKM_/exec'
+const form = document.forms['google-sheet']
+
+form.addEventListener('submit', e => {
+  e.preventDefault()
+  fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+    .then(response => alert("Thanks for contacting us! We will contact you soon."))
+    .catch(error => console.error('Error!', error.message))
+})
+
+function clearForm() {
+  form.reset();
+}
+</script>
+
+</body>
+</html>
